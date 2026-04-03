@@ -79,7 +79,6 @@
 			return { indicators: rawIndicators, scores: normalizedScores };
 		}
 
-		// Replace existing entry or append — generality is not in the initial 7-indicator array
 		const hasRaw = rawIndicators.some((i) => i.indicator === 'generality_index');
 		const indicators = hasRaw
 			? rawIndicators.map((ind) => (ind.indicator === 'generality_index' ? generalityRaw! : ind))
@@ -237,119 +236,63 @@
 						<!-- Main content area -->
 						<div class="space-y-6">
 							<!-- Radar chart -->
-							<svelte:boundary
-								onerror={(error) => console.error('[RadarChart] Render error:', error)}
-							>
-								<Card.Root class="border-border border">
-									<Card.Header><Card.Title>Quality Radar</Card.Title></Card.Header>
-									<Card.Content>
-										<RadarChartContainer scores={merged.scores} {cohortContext} />
-									</Card.Content>
-								</Card.Root>
-								{#snippet failed()}
-									<Card.Root class="border-border border">
-										<Card.Header><Card.Title>Quality Radar</Card.Title></Card.Header>
-										<Card.Content>
-											<p class="text-muted-foreground text-sm">
-												Chart could not be rendered. Indicator data is shown below.
-											</p>
-										</Card.Content>
-									</Card.Root>
-								{/snippet}
-							</svelte:boundary>
+							<Card.Root class="border-border border">
+								<Card.Header><Card.Title>Quality Radar</Card.Title></Card.Header>
+								<Card.Content>
+									<RadarChartContainer scores={merged.scores} {cohortContext} />
+								</Card.Content>
+							</Card.Root>
 
 							<!-- Indicator cards grid -->
-							<svelte:boundary
-								onerror={(error) => console.error('[IndicatorCards] Render error:', error)}
-							>
-								<div>
-									<h2 class="text-foreground mb-4 text-lg font-semibold">Quality Indicators</h2>
-									<div
-										class="grid gap-4 sm:grid-cols-2"
-										role="list"
-										aria-label="Patent quality indicators"
-									>
-										{#each orderedIndicators as { raw, normalized } (raw.indicator)}
-											<div role="listitem">
-												<IndicatorCard
-													rawIndicator={raw}
-													normalizedScore={normalized}
-													{cohortContext}
-													onCalculateGenerality={raw.indicator === 'generality_index' &&
-													!normalized.available &&
-													!generalityAttempted
-														? () => handleCalculateGenerality()
-														: undefined}
-													{generalityLoading}
-													generalityError={generalityError ?? (generalityRaw?.error || null)}
-												/>
-											</div>
-										{/each}
-									</div>
+							<div>
+								<h2 class="text-foreground mb-4 text-lg font-semibold">Quality Indicators</h2>
+								<div
+									class="grid gap-4 sm:grid-cols-2"
+									role="list"
+									aria-label="Patent quality indicators"
+								>
+									{#each orderedIndicators as { raw, normalized } (raw.indicator)}
+										<div role="listitem">
+											<IndicatorCard
+												rawIndicator={raw}
+												normalizedScore={normalized}
+												{cohortContext}
+												onCalculateGenerality={raw.indicator === 'generality_index' &&
+												!normalized.available &&
+												!generalityAttempted
+													? () => handleCalculateGenerality()
+													: undefined}
+												{generalityLoading}
+												generalityError={generalityError ?? (generalityRaw?.error || null)}
+											/>
+										</div>
+									{/each}
 								</div>
-								{#snippet failed()}
-									<div class="border-border border p-6">
-										<p class="text-muted-foreground text-sm">
-											Indicator details could not be rendered.
-										</p>
-									</div>
-								{/snippet}
-							</svelte:boundary>
+							</div>
 
 							<!-- AI Narrative -->
-							<svelte:boundary
-								onerror={(error) => console.error('[AINarrative] Render error:', error)}
-							>
-								<AINarrativeBlock
-									narrative={data.data.narrative}
-									narrativeError={data.data.narrativeError}
-									onOpenSettings={() => settings.openDialog()}
-								/>
-								{#snippet failed()}{/snippet}
-							</svelte:boundary>
+							<AINarrativeBlock
+								narrative={data.data.narrative}
+								narrativeError={data.data.narrativeError}
+								onOpenSettings={() => settings.openDialog()}
+							/>
 						</div>
 
 						<!-- Sidebar -->
 						<aside class="space-y-6">
-							<svelte:boundary
-								onerror={(error) => console.error('[CompositeScore] Render error:', error)}
-							>
-								<CompositeScoreDisplay
-									compositeScore={data.data.compositeScore}
-									indicatorCount={merged.indicators.filter((i) => i.available).length}
-									totalIndicators={8}
-									{cohortContext}
-									indicators={merged.indicators.map((i) => ({
-										name: i.indicator,
-										available: i.available
-									}))}
-									pmiData={data.data.pmiData}
-									wipoFieldName={data.data.wipoFieldName}
-								/>
-								{#snippet failed()}
-									<Card.Root class="border-border border">
-										<Card.Header><Card.Title>Overall Quality</Card.Title></Card.Header>
-										<Card.Content>
-											<p class="text-muted-foreground text-sm">Score could not be displayed.</p>
-										</Card.Content>
-									</Card.Root>
-								{/snippet}
-							</svelte:boundary>
-							<svelte:boundary
-								onerror={(error) => console.error('[PatentProfile] Render error:', error)}
-							>
-								<PatentProfileCard patent={data.data} {cohortContext} />
-								{#snippet failed()}
-									<Card.Root class="border-border border">
-										<Card.Header><Card.Title>Patent Profile</Card.Title></Card.Header>
-										<Card.Content>
-											<p class="text-muted-foreground text-sm">
-												Profile details could not be displayed.
-											</p>
-										</Card.Content>
-									</Card.Root>
-								{/snippet}
-							</svelte:boundary>
+							<CompositeScoreDisplay
+								compositeScore={data.data.compositeScore}
+								indicatorCount={merged.indicators.filter((i) => i.available).length}
+								totalIndicators={8}
+								{cohortContext}
+								indicators={merged.indicators.map((i) => ({
+									name: i.indicator,
+									available: i.available
+								}))}
+								pmiData={data.data.pmiData}
+								wipoFieldName={data.data.wipoFieldName}
+							/>
+							<PatentProfileCard patent={data.data} {cohortContext} />
 						</aside>
 					</div>
 				</section>
