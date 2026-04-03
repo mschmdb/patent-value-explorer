@@ -129,11 +129,11 @@ def launch() -> None:
         if local_bin not in os.environ.get("PATH", ""):
             os.environ["PATH"] = local_bin + ":" + os.environ["PATH"]
 
-        # 3. npm install (skip if already done)
-        marker = PROJECT_DIR / "node_modules" / ".package-lock.json"
+        # 3. pnpm install (skip if already done)
+        marker = PROJECT_DIR / "node_modules" / ".modules.yaml"
         if not marker.exists():
             _log("⏳ Installing dependencies (first run, ~30s)...")
-            _run(["npm", "install", "--prefer-offline"])
+            _run(["pnpm", "install", "--frozen-lockfile"])
         else:
             _log("⏳ Dependencies already installed, skipping...")
 
@@ -149,7 +149,7 @@ def launch() -> None:
 
         if needs_build:
             _log("⏳ Building app...")
-            _run(["npm", "run", "build"])
+            _run(["pnpm", "build"])
 
         # 5. Check ports are free
         for port in (MCP_PORT, APP_PORT):
