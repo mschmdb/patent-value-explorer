@@ -85,7 +85,8 @@ Patent Number (user input)
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/patent-value-explorer.git
+# Clone the repository (replace with your actual repo URL)
+git clone <your-repo-url>
 cd patent-value-explorer
 
 # Install dependencies
@@ -159,7 +160,7 @@ src/
         composite-index.ts
   routes/
     api/                # REST API endpoints
-    patent/[number]/    # Patent detail page (SSR)
+    patent/[auth]/[number]/  # Patent detail page (SSR)
     health/             # Health check endpoint
     +page.svelte        # Homepage with reference patents
 static/
