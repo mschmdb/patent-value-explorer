@@ -146,7 +146,7 @@ def launch() -> None:
         marker = PROJECT_DIR / "node_modules" / ".package-lock.json"
         if not marker.exists():
             _log("⏳ Installing dependencies (first run, ~30s)...")
-            _run(["npm", "install", "--legacy-peer-deps"])
+            _run(["npm", "ci", "--legacy-peer-deps"])
         else:
             _log("⏳ Dependencies already installed, skipping...")
 
