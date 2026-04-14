@@ -134,7 +134,8 @@ def launch() -> None:
         _log("⏳ Installing mtc.berlin PATSTAT MCP...")
         subprocess.run(
             [sys.executable, "-m", "pip", "install", "--user",
-             "git+https://github.com/mtcberlin/mtc-patstat-mcp-lite.git@develop"],
+             "git+https://github.com/mtcberlin/mtc-patstat-mcp-lite.git"
+             "@334098aedc7a3242a6fbcdd10034be8bb1b0c55a"],
             capture_output=True, text=True, check=True,
         )
         # Ensure ~/.local/bin is in PATH (pip --user installs scripts there)
