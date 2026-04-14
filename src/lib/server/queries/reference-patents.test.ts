@@ -19,6 +19,7 @@ const samplePatent: ReferencePatentRow = {
 	generalityIndex: 0.78,
 	originalityIndex: 0.65,
 	claimsCount: 42,
+	patentScope: 5,
 	grantLagDays: 1195,
 	renewalDuration: 18,
 	forwardCitationsNormalized: 0.92,
@@ -27,6 +28,7 @@ const samplePatent: ReferencePatentRow = {
 	generalityIndexNormalized: 0.88,
 	originalityIndexNormalized: 0.76,
 	claimsCountNormalized: 0.81,
+	patentScopeNormalized: 0.6,
 	grantLagNormalized: 0.45,
 	renewalDurationNormalized: 0.9,
 	compositeScore: 0.79

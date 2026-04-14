@@ -3,8 +3,8 @@ import { METHODOLOGY_CONTENT } from '$lib/config/methodology-content';
 import { INDICATOR_NAMES } from '$lib/scoring/types';
 
 describe('IndicatorMethodology', () => {
-	it('all 8 indicators have methodology content available', () => {
-		expect(INDICATOR_NAMES).toHaveLength(8);
+	it('all 9 indicators have methodology content available', () => {
+		expect(INDICATOR_NAMES).toHaveLength(9);
 		for (const name of INDICATOR_NAMES) {
 			const content = METHODOLOGY_CONTENT[name];
 			expect(content).toBeDefined();

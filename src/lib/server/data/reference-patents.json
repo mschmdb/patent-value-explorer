@@ -27,7 +27,9 @@
 		"claimsCountNormalized": 0.4857,
 		"grantLagNormalized": 0.2527,
 		"renewalDurationNormalized": 0.5,
-		"compositeScore": 0.3058
+		"compositeScore": 0.3058,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "EP2771468",
@@ -57,7 +59,9 @@
 		"claimsCountNormalized": 0.3261,
 		"grantLagNormalized": 0.0652,
 		"renewalDurationNormalized": 0.4444,
-		"compositeScore": 0.5419
+		"compositeScore": 0.5419,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US8140289",
@@ -87,7 +91,9 @@
 		"claimsCountNormalized": 0.3,
 		"grantLagNormalized": 0.2511,
 		"renewalDurationNormalized": 0.6,
-		"compositeScore": 0.3399
+		"compositeScore": 0.3399,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US7723996",
@@ -117,7 +123,9 @@
 		"claimsCountNormalized": 0.3529,
 		"grantLagNormalized": 0.1765,
 		"renewalDurationNormalized": 0.0625,
-		"compositeScore": 0.2046
+		"compositeScore": 0.2046,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US6469154",
@@ -147,7 +155,9 @@
 		"claimsCountNormalized": 0.2651,
 		"grantLagNormalized": 0.1545,
 		"renewalDurationNormalized": 0.5294,
-		"compositeScore": 0.3865
+		"compositeScore": 0.3865,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US6285999",
@@ -177,7 +187,9 @@
 		"claimsCountNormalized": 0.36,
 		"grantLagNormalized": 0.2093,
 		"renewalDurationNormalized": 0.5294,
-		"compositeScore": 0.4879
+		"compositeScore": 0.4879,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US7041468",
@@ -207,7 +219,9 @@
 		"claimsCountNormalized": 0.3125,
 		"grantLagNormalized": 0.2215,
 		"renewalDurationNormalized": 0.5294,
-		"compositeScore": 0.7156
+		"compositeScore": 0.7156,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US9056783",
@@ -237,7 +251,9 @@
 		"claimsCountNormalized": 0.6415,
 		"grantLagNormalized": 0.7226,
 		"renewalDurationNormalized": 0.0588,
-		"compositeScore": 0.6318
+		"compositeScore": 0.6318,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US8816828",
@@ -267,7 +283,9 @@
 		"claimsCountNormalized": 0.4483,
 		"grantLagNormalized": 0.5428,
 		"renewalDurationNormalized": 0.3125,
-		"compositeScore": 0.5791
+		"compositeScore": 0.5791,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US8543339",
@@ -297,7 +315,9 @@
 		"claimsCountNormalized": 0.52,
 		"grantLagNormalized": 0.3005,
 		"renewalDurationNormalized": 0.3571,
-		"compositeScore": 0.3129
+		"compositeScore": 0.3129,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "EP1590066",
@@ -327,7 +347,9 @@
 		"claimsCountNormalized": null,
 		"grantLagNormalized": null,
 		"renewalDurationNormalized": null,
-		"compositeScore": 0.3054
+		"compositeScore": 0.3054,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US7425740",
@@ -357,7 +379,9 @@
 		"claimsCountNormalized": 0.4286,
 		"grantLagNormalized": 0.2026,
 		"renewalDurationNormalized": 0.2941,
-		"compositeScore": 0.3491
+		"compositeScore": 0.3491,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US9962129B2",
@@ -387,7 +411,9 @@
 		"claimsCountNormalized": 0.6757,
 		"grantLagNormalized": 0.1323,
 		"renewalDurationNormalized": 0,
-		"compositeScore": 0.3798
+		"compositeScore": 0.3798,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	},
 	{
 		"publicationNumber": "US8878740B2",
@@ -417,6 +443,8 @@
 		"claimsCountNormalized": 0.0851,
 		"grantLagNormalized": 0.2378,
 		"renewalDurationNormalized": 0.0833,
-		"compositeScore": 0.3346
+		"compositeScore": 0.3346,
+		"patentScope": null,
+		"patentScopeNormalized": null
 	}
 ]

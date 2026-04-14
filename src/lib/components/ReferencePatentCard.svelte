@@ -22,6 +22,7 @@
 		generality_index: 'generalityIndexNormalized',
 		originality_index: 'originalityIndexNormalized',
 		claims_count: 'claimsCountNormalized',
+		patent_scope: 'patentScopeNormalized',
 		grant_lag_days: 'grantLagNormalized',
 		renewal_duration: 'renewalDurationNormalized'
 	};

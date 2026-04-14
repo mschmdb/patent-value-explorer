@@ -52,6 +52,15 @@ export const METHODOLOGY_CONTENT: Record<IndicatorName, MethodologyContent> = {
 		oecdSection: '3.7',
 		unavailableReason: 'Claims data not available for this patent'
 	},
+	patent_scope: {
+		formula: 'COUNT(DISTINCT 4-character CPC subclass)',
+		formulaDisplay:
+			'Counts distinct CPC subclasses (e.g. "C12N", "G06F") assigned to the patent — the OECD definition uses IPC subclasses; CPC and IPC share the subclass taxonomy',
+		patstatSource: 'tls224_appln_cpc',
+		normalizationMethod: 'Winsorization at 98th percentile, then linear 0.0–1.0 scaling',
+		oecdSection: '3.3',
+		unavailableReason: 'No CPC classifications available for this patent'
+	},
 	generality_index: {
 		formula: 'GEN = 1 - \u03A3(sij\u00B2)',
 		formulaDisplay: "Herfindahl index of forward citations' CPC class diversity",

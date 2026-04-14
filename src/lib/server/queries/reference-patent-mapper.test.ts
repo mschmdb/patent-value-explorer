@@ -21,6 +21,7 @@ const fullRef: ReferencePatentRow = {
 	generalityIndex: 0.49,
 	originalityIndex: 0.56,
 	claimsCount: 17,
+	patentScope: 3,
 	grantLagDays: 426,
 	renewalDuration: 8,
 	forwardCitationsNormalized: 1.0,
@@ -29,6 +30,7 @@ const fullRef: ReferencePatentRow = {
 	generalityIndexNormalized: 0.7,
 	originalityIndexNormalized: 0.76,
 	claimsCountNormalized: 0.33,
+	patentScopeNormalized: 0.5,
 	grantLagNormalized: 0.07,
 	renewalDurationNormalized: 0.44,
 	compositeScore: 0.49
@@ -63,10 +65,10 @@ describe('mapReferenceToProfile', () => {
 		expect(profile.narrative).toBeNull();
 	});
 
-	it('maps all 8 raw indicators', () => {
+	it('maps all 9 raw indicators', () => {
 		const profile = mapReferenceToProfile(fullRef);
 
-		expect(profile.rawIndicators).toHaveLength(8);
+		expect(profile.rawIndicators).toHaveLength(9);
 		for (const ri of profile.rawIndicators) {
 			expect(ri.available).toBe(true);
 			expect(ri.value).not.toBeNull();
@@ -78,10 +80,10 @@ describe('mapReferenceToProfile', () => {
 		expect(fwd?.value).toBe(189);
 	});
 
-	it('maps all 8 normalized scores', () => {
+	it('maps all 9 normalized scores', () => {
 		const profile = mapReferenceToProfile(fullRef);
 
-		expect(profile.normalizedScores).toHaveLength(8);
+		expect(profile.normalizedScores).toHaveLength(9);
 		for (const ns of profile.normalizedScores) {
 			expect(ns.available).toBe(true);
 			expect(ns.normalized).not.toBeNull();

@@ -16,6 +16,7 @@ export type IndicatorName =
 	| 'generality_index'
 	| 'originality_index'
 	| 'claims_count'
+	| 'patent_scope'
 	| 'grant_lag_days'
 	| 'renewal_duration';
 
@@ -26,6 +27,7 @@ export const INDICATOR_NAMES: readonly IndicatorName[] = [
 	'generality_index',
 	'originality_index',
 	'claims_count',
+	'patent_scope',
 	'grant_lag_days',
 	'renewal_duration'
 ] as const;
@@ -38,6 +40,7 @@ export const STORY_LABELS: Record<IndicatorName, string> = {
 	generality_index: 'This idea applies across many fields',
 	originality_index: 'This idea draws from diverse technology fields',
 	claims_count: "This is the scope of what's protected",
+	patent_scope: 'This idea spans multiple technology areas',
 	grant_lag_days: 'How quickly this patent was granted',
 	renewal_duration: 'Someone believed enough to keep paying'
 } as const;
@@ -50,6 +53,7 @@ export const TECHNICAL_NAMES: Record<IndicatorName, string> = {
 	generality_index: 'Generality Index',
 	originality_index: 'Originality Index',
 	claims_count: 'Number of Claims',
+	patent_scope: 'Patent Scope',
 	grant_lag_days: 'Grant Lag',
 	renewal_duration: 'Renewal Duration'
 } as const;

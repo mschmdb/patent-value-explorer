@@ -15,6 +15,7 @@ const RAW_UNITS: Record<IndicatorName, string> = {
 	generality_index: 'fwd. citation score',
 	originality_index: 'bwd. citation score',
 	claims_count: 'claims',
+	patent_scope: 'CPC subclasses',
 	grant_lag_days: 'days',
 	renewal_duration: 'years'
 };
@@ -64,6 +65,8 @@ export const INDICATOR_METHODOLOGY: Record<IndicatorName, string> = {
 		'Measures CPC section diversity of backward citations — how many different technology fields the cited prior art covers (Herfindahl index). Higher values mean the patent draws knowledge from more diverse technology areas.',
 	claims_count:
 		'The number of independent and dependent claims defines the scope of legal protection. More claims generally mean broader protection.',
+	patent_scope:
+		'Counts the number of distinct CPC subclasses (4-character codes such as "C12N" or "G06F") assigned to the patent. A larger scope means the invention spans more technology areas.',
 	grant_lag_days:
 		'Days between filing and grant. Faster grants provide earlier legal certainty. Compared to patents in the same technology field and filing year.',
 	renewal_duration:

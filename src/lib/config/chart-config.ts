@@ -19,7 +19,13 @@ export const EPO_DIMENSIONS: EpoDimension[] = [
 		name: 'Technological Importance',
 		color: '#1E40AF',
 		darkColor: '#3B82F6',
-		indicators: ['forward_citations', 'backward_citations', 'generality_index', 'originality_index']
+		indicators: [
+			'forward_citations',
+			'backward_citations',
+			'generality_index',
+			'originality_index',
+			'patent_scope'
+		]
 	},
 	{
 		name: 'Market Relevance',
@@ -32,13 +38,14 @@ export const EPO_DIMENSIONS: EpoDimension[] = [
 /** Clockwise axis order for radar chart, grouped by EPO dimension */
 export const AXIS_ORDER: IndicatorName[] = [
 	'forward_citations', // 12 o'clock (top)
-	'generality_index', // ~1:30
-	'family_size', // ~3 o'clock
-	'claims_count', // ~4:30
-	'renewal_duration', // ~5:15
-	'grant_lag_days', // ~6 o'clock (bottom)
-	'originality_index', // ~9 o'clock
-	'backward_citations' // ~10:30
+	'generality_index', // ~1:20
+	'family_size', // ~2:40
+	'claims_count', // ~4:00
+	'renewal_duration', // ~5:20
+	'grant_lag_days', // ~6:40 (just past bottom)
+	'patent_scope', // ~8:00
+	'originality_index', // ~9:20
+	'backward_citations' // ~10:40
 ];
 
 /** Get the EPO dimension for a given indicator */

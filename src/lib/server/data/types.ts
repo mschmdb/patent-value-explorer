@@ -47,6 +47,7 @@ export interface ReferencePatentRow {
 	generalityIndex: number | null;
 	originalityIndex: number | null;
 	claimsCount: number | null;
+	patentScope: number | null;
 	grantLagDays: number | null;
 	renewalDuration: number | null;
 	forwardCitationsNormalized: number | null;
@@ -55,6 +56,7 @@ export interface ReferencePatentRow {
 	generalityIndexNormalized: number | null;
 	originalityIndexNormalized: number | null;
 	claimsCountNormalized: number | null;
+	patentScopeNormalized: number | null;
 	grantLagNormalized: number | null;
 	renewalDurationNormalized: number | null;
 	compositeScore: number | null;

@@ -18,6 +18,9 @@ vi.mock('./indicators/originality-index', () => ({
 	calculateOriginalityIndex: vi.fn(),
 	calculateHerfindahl: vi.fn()
 }));
+vi.mock('./indicators/patent-scope', () => ({
+	calculatePatentScope: vi.fn()
+}));
 vi.mock('./indicators/grant-lag', () => ({
 	calculateGrantLag: vi.fn()
 }));
@@ -36,6 +39,7 @@ import { calculateBackwardCitations } from './indicators/backward-citations';
 import { calculateFamilySize } from './indicators/family-size';
 import { calculateClaimsCount } from './indicators/claims-count';
 import { calculateOriginalityIndex } from './indicators/originality-index';
+import { calculatePatentScope } from './indicators/patent-scope';
 import { calculateGrantLag } from './indicators/grant-lag';
 import { calculateRenewalDuration } from './indicators/renewal-duration';
 import type { IndicatorResult } from './types';
@@ -64,16 +68,17 @@ function mockAllSuccess(): void {
 	vi.mocked(calculateFamilySize).mockResolvedValue(successResult('family_size', 12));
 	vi.mocked(calculateClaimsCount).mockResolvedValue(successResult('claims_count', 20));
 	vi.mocked(calculateOriginalityIndex).mockResolvedValue(successResult('originality_index', 0.72));
+	vi.mocked(calculatePatentScope).mockResolvedValue(successResult('patent_scope', 4));
 	vi.mocked(calculateGrantLag).mockResolvedValue(successResult('grant_lag_days', 1247));
 	vi.mocked(calculateRenewalDuration).mockResolvedValue(successResult('renewal_duration', 15));
 }
 
 describe('calculateAllIndicators', () => {
-	it('returns 7 results when all indicators succeed', async () => {
+	it('returns 8 results when all indicators succeed', async () => {
 		mockAllSuccess();
 		const results = await calculateAllIndicators(12345, mockClient);
 
-		expect(results).toHaveLength(7);
+		expect(results).toHaveLength(8);
 		expect(results.every((r) => r.available)).toBe(true);
 		expect(results.map((r) => r.indicator)).toEqual([
 			'forward_citations',
@@ -81,6 +86,7 @@ describe('calculateAllIndicators', () => {
 			'family_size',
 			'claims_count',
 			'originality_index',
+			'patent_scope',
 			'grant_lag_days',
 			'renewal_duration'
 		]);
@@ -101,6 +107,7 @@ describe('calculateAllIndicators', () => {
 		vi.mocked(calculateFamilySize).mockResolvedValue(successResult('family_size', 12));
 		vi.mocked(calculateClaimsCount).mockResolvedValue(failResult('claims_count', 'Server error'));
 		vi.mocked(calculateOriginalityIndex).mockResolvedValue(successResult('originality_index', 0.5));
+		vi.mocked(calculatePatentScope).mockResolvedValue(successResult('patent_scope', 3));
 		vi.mocked(calculateGrantLag).mockResolvedValue(
 			failResult('grant_lag_days', 'Patent not granted')
 		);
@@ -108,10 +115,10 @@ describe('calculateAllIndicators', () => {
 
 		const results = await calculateAllIndicators(12345, mockClient);
 
-		expect(results).toHaveLength(7);
+		expect(results).toHaveLength(8);
 		const available = results.filter((r) => r.available);
 		const unavailable = results.filter((r) => !r.available);
-		expect(available).toHaveLength(4);
+		expect(available).toHaveLength(5);
 		expect(unavailable).toHaveLength(3);
 	});
 
@@ -121,7 +128,7 @@ describe('calculateAllIndicators', () => {
 
 		const results = await calculateAllIndicators(12345, mockClient);
 
-		expect(results).toHaveLength(7);
+		expect(results).toHaveLength(8);
 		expect(results[4].available).toBe(false);
 		expect(results[4].indicator).toBe('originality_index');
 		expect(results[4].error).toBe('Unexpected crash');
@@ -139,6 +146,7 @@ describe('calculateAllIndicators', () => {
 		vi.mocked(calculateOriginalityIndex).mockResolvedValue(
 			failResult('originality_index', 'timeout')
 		);
+		vi.mocked(calculatePatentScope).mockResolvedValue(failResult('patent_scope', 'timeout'));
 		vi.mocked(calculateGrantLag).mockResolvedValue(failResult('grant_lag_days', 'timeout'));
 		vi.mocked(calculateRenewalDuration).mockResolvedValue(
 			failResult('renewal_duration', 'timeout')
@@ -146,7 +154,7 @@ describe('calculateAllIndicators', () => {
 
 		const results = await calculateAllIndicators(12345, mockClient);
 
-		expect(results).toHaveLength(7);
+		expect(results).toHaveLength(8);
 		expect(results.every((r) => !r.available)).toBe(true);
 	});
 });

@@ -45,6 +45,11 @@ const INDICATOR_COLUMNS: Record<IndicatorName, IndicatorColumnMap> = {
 		norm: 'claimsCountNormalized',
 		dataSource: 'reference_patents'
 	},
+	patent_scope: {
+		raw: 'patentScope',
+		norm: 'patentScopeNormalized',
+		dataSource: 'reference_patents'
+	},
 	grant_lag_days: {
 		raw: 'grantLagDays',
 		norm: 'grantLagNormalized',
