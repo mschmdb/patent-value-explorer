@@ -49,7 +49,7 @@ export const TECHNICAL_NAMES: Record<IndicatorName, string> = {
 	family_size: 'Family Size',
 	generality_index: 'Generality Index',
 	originality_index: 'Originality Index',
-	claims_count: 'Patent Scope (Claims)',
+	claims_count: 'Number of Claims',
 	grant_lag_days: 'Grant Lag',
 	renewal_duration: 'Renewal Duration'
 } as const;
