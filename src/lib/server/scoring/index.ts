@@ -5,6 +5,7 @@ import { calculateBackwardCitations } from './indicators/backward-citations';
 import { calculateFamilySize } from './indicators/family-size';
 import { calculateClaimsCount } from './indicators/claims-count';
 import { calculateOriginalityIndex } from './indicators/originality-index';
+import { calculateRadicalnessIndex } from './indicators/radicalness-index';
 import { calculatePatentScope } from './indicators/patent-scope';
 import { calculateGrantLag } from './indicators/grant-lag';
 import { calculateRenewalDuration } from './indicators/renewal-duration';
@@ -18,6 +19,7 @@ const INDICATOR_ORDER: IndicatorName[] = [
 	'family_size',
 	'claims_count',
 	'originality_index',
+	'radicalness_index',
 	'patent_scope',
 	'grant_lag_days',
 	'renewal_duration'
@@ -51,6 +53,7 @@ export async function calculateAllIndicators(
 		calculateFamilySize(applnId, mcpClient),
 		calculateClaimsCount(applnId, mcpClient),
 		calculateOriginalityIndex(applnId, mcpClient),
+		calculateRadicalnessIndex(applnId, mcpClient),
 		calculatePatentScope(applnId, mcpClient),
 		calculateGrantLag(applnId, mcpClient),
 		calculateRenewalDuration(applnId, mcpClient)

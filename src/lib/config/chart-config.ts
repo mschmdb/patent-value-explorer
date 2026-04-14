@@ -24,6 +24,7 @@ export const EPO_DIMENSIONS: EpoDimension[] = [
 			'backward_citations',
 			'generality_index',
 			'originality_index',
+			'radicalness_index',
 			'patent_scope'
 		]
 	},
@@ -38,14 +39,15 @@ export const EPO_DIMENSIONS: EpoDimension[] = [
 /** Clockwise axis order for radar chart, grouped by EPO dimension */
 export const AXIS_ORDER: IndicatorName[] = [
 	'forward_citations', // 12 o'clock (top)
-	'generality_index', // ~1:20
-	'family_size', // ~2:40
-	'claims_count', // ~4:00
-	'renewal_duration', // ~5:20
-	'grant_lag_days', // ~6:40 (just past bottom)
-	'patent_scope', // ~8:00
-	'originality_index', // ~9:20
-	'backward_citations' // ~10:40
+	'generality_index',
+	'family_size',
+	'claims_count',
+	'renewal_duration',
+	'grant_lag_days', // ~6 o'clock
+	'patent_scope',
+	'radicalness_index',
+	'originality_index',
+	'backward_citations'
 ];
 
 /** Get the EPO dimension for a given indicator */

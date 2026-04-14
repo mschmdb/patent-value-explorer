@@ -29,7 +29,9 @@
 		"renewalDurationNormalized": 0.5,
 		"compositeScore": 0.3058,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "EP2771468",
@@ -61,7 +63,9 @@
 		"renewalDurationNormalized": 0.4444,
 		"compositeScore": 0.5419,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US8140289",
@@ -93,7 +97,9 @@
 		"renewalDurationNormalized": 0.6,
 		"compositeScore": 0.3399,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US7723996",
@@ -125,7 +131,9 @@
 		"renewalDurationNormalized": 0.0625,
 		"compositeScore": 0.2046,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US6469154",
@@ -157,7 +165,9 @@
 		"renewalDurationNormalized": 0.5294,
 		"compositeScore": 0.3865,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US6285999",
@@ -189,7 +199,9 @@
 		"renewalDurationNormalized": 0.5294,
 		"compositeScore": 0.4879,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US7041468",
@@ -221,7 +233,9 @@
 		"renewalDurationNormalized": 0.5294,
 		"compositeScore": 0.7156,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US9056783",
@@ -253,7 +267,9 @@
 		"renewalDurationNormalized": 0.0588,
 		"compositeScore": 0.6318,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US8816828",
@@ -285,7 +301,9 @@
 		"renewalDurationNormalized": 0.3125,
 		"compositeScore": 0.5791,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US8543339",
@@ -317,7 +335,9 @@
 		"renewalDurationNormalized": 0.3571,
 		"compositeScore": 0.3129,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "EP1590066",
@@ -349,7 +369,9 @@
 		"renewalDurationNormalized": null,
 		"compositeScore": 0.3054,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US7425740",
@@ -381,7 +403,9 @@
 		"renewalDurationNormalized": 0.2941,
 		"compositeScore": 0.3491,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US9962129B2",
@@ -413,7 +437,9 @@
 		"renewalDurationNormalized": 0,
 		"compositeScore": 0.3798,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	},
 	{
 		"publicationNumber": "US8878740B2",
@@ -445,6 +471,8 @@
 		"renewalDurationNormalized": 0.0833,
 		"compositeScore": 0.3346,
 		"patentScope": null,
-		"patentScopeNormalized": null
+		"patentScopeNormalized": null,
+		"radicalnessIndex": null,
+		"radicalnessIndexNormalized": null
 	}
 ]

@@ -46,6 +46,7 @@ export interface ReferencePatentRow {
 	familySize: number | null;
 	generalityIndex: number | null;
 	originalityIndex: number | null;
+	radicalnessIndex: number | null;
 	claimsCount: number | null;
 	patentScope: number | null;
 	grantLagDays: number | null;
@@ -55,6 +56,7 @@ export interface ReferencePatentRow {
 	familySizeNormalized: number | null;
 	generalityIndexNormalized: number | null;
 	originalityIndexNormalized: number | null;
+	radicalnessIndexNormalized: number | null;
 	claimsCountNormalized: number | null;
 	patentScopeNormalized: number | null;
 	grantLagNormalized: number | null;

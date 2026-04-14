@@ -15,6 +15,7 @@ export type IndicatorName =
 	| 'family_size'
 	| 'generality_index'
 	| 'originality_index'
+	| 'radicalness_index'
 	| 'claims_count'
 	| 'patent_scope'
 	| 'grant_lag_days'
@@ -26,6 +27,7 @@ export const INDICATOR_NAMES: readonly IndicatorName[] = [
 	'family_size',
 	'generality_index',
 	'originality_index',
+	'radicalness_index',
 	'claims_count',
 	'patent_scope',
 	'grant_lag_days',
@@ -39,6 +41,7 @@ export const STORY_LABELS: Record<IndicatorName, string> = {
 	family_size: 'This idea matters in these countries',
 	generality_index: 'This idea applies across many fields',
 	originality_index: 'This idea draws from diverse technology fields',
+	radicalness_index: 'This idea breaks from its own technology field',
 	claims_count: "This is the scope of what's protected",
 	patent_scope: 'This idea spans multiple technology areas',
 	grant_lag_days: 'How quickly this patent was granted',
@@ -52,6 +55,7 @@ export const TECHNICAL_NAMES: Record<IndicatorName, string> = {
 	family_size: 'Family Size',
 	generality_index: 'Generality Index',
 	originality_index: 'Originality Index',
+	radicalness_index: 'Radicalness Index',
 	claims_count: 'Number of Claims',
 	patent_scope: 'Patent Scope',
 	grant_lag_days: 'Grant Lag',

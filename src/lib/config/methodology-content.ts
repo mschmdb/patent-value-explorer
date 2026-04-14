@@ -80,6 +80,16 @@ export const METHODOLOGY_CONTENT: Record<IndicatorName, MethodologyContent> = {
 		unavailableReason: 'Requires backward citations > 0 to compute CPC diversity',
 		range: '1.0'
 	},
+	radicalness_index: {
+		formula: 'RAD = (1 / n_BC) \u00B7 COUNT(j : CPC(j) \u2229 CPC(focal) = \u2205)',
+		formulaDisplay:
+			'Share of backward citations whose CPC subclasses do not overlap with the focal patent\u2019s own classification',
+		patstatSource: 'tls212 + tls224',
+		normalizationMethod: 'Winsorization at 98th percentile, then linear 0.0–1.0 scaling',
+		oecdSection: '3.7',
+		unavailableReason: 'Requires backward citations > 0 with CPC classifications',
+		range: '1.0'
+	},
 	grant_lag_days: {
 		formula: 'Days between filing date and grant date',
 		patstatSource: 'tls201 + tls231',
