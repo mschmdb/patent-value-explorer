@@ -48,6 +48,32 @@ export const STORY_LABELS: Record<IndicatorName, string> = {
 	renewal_duration: 'Someone believed enough to keep paying'
 } as const;
 
+/**
+ * Provenance of each indicator: where it originates from.
+ *
+ * 'OECD'  — defined in the OECD Patent Quality framework
+ *           (Squicciarini & Dernis 2013).
+ * 'PVE'   — added by Patent Value Explorer beyond the OECD set.
+ *
+ * Currently all indicators are OECD-grounded; the type exists so that
+ * UI surfaces (badges, legends) can label provenance consistently and
+ * future PVE-specific additions can be marked clearly.
+ */
+export type IndicatorProvenance = 'OECD' | 'PVE';
+
+export const INDICATOR_PROVENANCE: Record<IndicatorName, IndicatorProvenance> = {
+	forward_citations: 'OECD',
+	backward_citations: 'OECD',
+	family_size: 'OECD',
+	generality_index: 'OECD',
+	originality_index: 'OECD',
+	radicalness_index: 'OECD',
+	claims_count: 'OECD',
+	patent_scope: 'OECD',
+	grant_lag_days: 'OECD',
+	renewal_duration: 'OECD'
+} as const;
+
 /** Technical display names */
 export const TECHNICAL_NAMES: Record<IndicatorName, string> = {
 	forward_citations: 'Forward Citations',
