@@ -13,7 +13,7 @@
 	const defaultTitle = $derived(
 		provenance === 'OECD'
 			? 'OECD Patent Quality Indicator (Squicciarini & Dernis 2013)'
-			: 'Patent Value Explorer addition — not part of the OECD framework'
+			: 'Patent Value Explorer addition - not part of the OECD framework'
 	);
 
 	const styles = $derived(

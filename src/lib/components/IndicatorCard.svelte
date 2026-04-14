@@ -115,7 +115,7 @@
 				{/if}
 
 				{#if normalizedScore.smallCohort}
-					<p class="text-muted-foreground mt-1 text-[10px]">Small cohort — interpret with care</p>
+					<p class="text-muted-foreground mt-1 text-[10px]">Small cohort - interpret with care</p>
 				{/if}
 			{:else if showCalculateButton}
 				<Button

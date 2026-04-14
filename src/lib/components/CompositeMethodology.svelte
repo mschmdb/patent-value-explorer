@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { IndicatorName } from '$lib/scoring/types';
 	import { STORY_LABELS } from '$lib/scoring/types';
+	import ProvenanceBadge from './ProvenanceBadge.svelte';
 
 	interface IndicatorEntry {
 		name: IndicatorName;
@@ -23,7 +24,13 @@
 <div class="space-y-3 text-xs">
 	<!-- Formula -->
 	<div>
-		<p class="text-muted-foreground mb-1 font-medium">Formula</p>
+		<div class="mb-1 flex items-center gap-1.5">
+			<p class="text-muted-foreground font-medium">Formula</p>
+			<ProvenanceBadge
+				provenance="PVE"
+				title="PVE uses 5 of OECD's 6 composite components - Generality is omitted because computing it requires a ~16 GB scan over every citing patent's CPC classes. The component selection itself follows OECD §4."
+			/>
+		</div>
 		<p class="text-foreground" style="font-family: 'JetBrains Mono', monospace;">
 			Composite = &Sigma;(normalized scores) / n
 		</p>
@@ -32,7 +39,7 @@
 	<!-- Explanation -->
 	<p class="text-foreground">
 		Equally-weighted average over {totalIndicators} OECD composite components (Forward Citations,
-		Family Size, Claims, Originality, Radicalness — Squicciarini &amp; Dernis 2013, §4). Generality
+		Family Size, Claims, Originality, Radicalness - Squicciarini &amp; Dernis 2013, §4). Generality
 		is excluded from the standard composite because computing it requires a ~16 GB scan over every
 		citing patent's CPC classes; it is offered on-demand instead. Other PVE indicators (Backward
 		Citations, Patent Scope, Grant Lag, Renewal) are reported standalone and do not feed into this
@@ -72,7 +79,7 @@
 						></span>
 						<span class="text-foreground"
 							>{indicator.storyLabel}
-							<span class="text-muted-foreground">— {indicator.reason}</span></span
+							<span class="text-muted-foreground">- {indicator.reason}</span></span
 						>
 					</li>
 				{/each}
