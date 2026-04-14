@@ -14,6 +14,8 @@
 	import LoadingSection from '$lib/components/LoadingSection.svelte';
 	import AINarrativeBlock from '$lib/components/AINarrativeBlock.svelte';
 	import * as Card from '$lib/components/ui/card';
+	import { Badge } from '$lib/components/ui/badge';
+	import { Sparkles } from '@lucide/svelte';
 	import { settings } from '$lib/stores/settings.svelte';
 
 	const auth = $derived(page.params.auth ?? '');
@@ -96,6 +98,14 @@
 
 		return { indicators, scores };
 	});
+
+	/**
+	 * Breakthrough flag (OECD §3.12): patent's forward-citation count is in
+	 * the top 1% of its field/year cohort. Renders as a badge near the title.
+	 */
+	const isBreakthrough = $derived(
+		(merged?.scores.find((s) => s.indicator === 'forward_citations')?.percentile ?? 0) >= 99
+	);
 
 	/** Ordered indicator pairs for the card grid */
 	const orderedIndicators = $derived.by(() => {
@@ -231,7 +241,19 @@
 					<p class="text-muted-foreground text-sm font-medium tracking-wider uppercase">
 						Patent Profile
 					</p>
-					<h1 class="text-foreground mt-2 font-mono text-4xl font-semibold">{displayNumber}</h1>
+					<div class="mt-2 flex flex-wrap items-center gap-3">
+						<h1 class="text-foreground font-mono text-4xl font-semibold">{displayNumber}</h1>
+						{#if isBreakthrough}
+							<Badge
+								variant="default"
+								class="gap-1 bg-amber-500 text-amber-50 hover:bg-amber-500"
+								title="Forward citations in top 1% of this WIPO field and filing-year cohort (OECD §3.12 Breakthrough Inventions)"
+							>
+								<Sparkles class="h-3.5 w-3.5" aria-hidden="true" />
+								Breakthrough — Top 1%
+							</Badge>
+						{/if}
+					</div>
 
 					<div class="mt-8 grid gap-8 lg:grid-cols-[2fr_1fr]">
 						<!-- Main content area -->
