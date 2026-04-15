@@ -1,18 +1,18 @@
 # Patent Value Explorer
 
-A web application that evaluates patent quality using ten indicators from the **OECD Patent Quality framework** (Squicciarini & Dernis, 2013), plus a Breakthrough Invention flag (OECD §3.12) for patents in the top 1 % of their cohort - 11 of the 13 OECD concepts. Enter a patent publication number and receive a quality profile with normalized scores, a radar chart visualization, and an AI-generated narrative summary.
+A web application that evaluates patent quality using ten indicators from the **OECD Patent Quality framework** (Squicciarini & Dernis, 2013), plus a Breakthrough Invention flag (OECD §3.12) for patents in the top 1 % of their cohort - 11 of the 13 OECD concepts. Enter a patent publication number and receive a quality profile with normalized scores, a radar chart visualization, and an optional AI-generated narrative summary.
 
 Built for the **EPO CodeFest 2026**.
 
 ## EPO CodeFest 2026
 
-The [European Patent Office (EPO) CodeFest 2026](https://www.epo.org/en/news-events/in-focus/codefest/codefest-2026-patent-and-ip-portfolio-evaluation) challenges participants to build innovative tools using patent data. Patent Value Explorer addresses the need for accessible, transparent patent quality assessment by combining real-time PATSTAT data with established OECD methodology.
+The [European Patent Office (EPO) CodeFest 2026](https://www.epo.org/en/news-events/in-focus/codefest/codefest-2026-patent-and-ip-portfolio-evaluation) challenges participants to build innovative tools using patent data. Patent Value Explorer combines real-time PATSTAT data with the OECD Patent Quality methodology.
 
 The application runs on the **EPO Technology and Innovation Platform (TIP)** environment and can also be deployed locally for development.
 
 ## OECD Patent Quality Indicators
 
-The scoring engine implements ten quality indicators from the OECD Patent Quality Indicators database (Squicciarini, M. & Dernis, H., 2013, "Measuring Patent Quality"), plus a Breakthrough Invention flag:
+The scoring engine implements ten quality indicators from the OECD Patent Quality framework (Squicciarini, M. & Dernis, H., 2013, "Measuring Patent Quality"), plus a Breakthrough Invention flag:
 
 | #   | Indicator                  | OECD § | Description                                                                                  |
 | --- | -------------------------- | ------ | -------------------------------------------------------------------------------------------- |
@@ -22,13 +22,13 @@ The scoring engine implements ten quality indicators from the OECD Patent Qualit
 | 4   | **Family Size**            | 3.4    | International market relevance - number of jurisdictions in the DOCDB family                 |
 | 5   | **Generality Index**       | 3.5    | Cross-field applicability - Herfindahl diversity of citing patents' CPC sections (on-demand) |
 | 6   | **Originality Index**      | 3.6    | Breadth of knowledge sources - Herfindahl diversity of cited patents' CPC sections           |
-| 7   | **Radicalness Index**      | 3.7    | Share of backward citations in CPC subclasses outside the focal patent's                     |
+| 7   | **Radicalness Index**      | 3.7    | Share of backward citations in CPC subclasses outside those of the focal patent              |
 | 8   | **Grant Lag**              | 3.8    | Examination speed - days from filing to grant                                                |
 | 9   | **Number of Claims**       | 3.9    | Scope of legal protection - number of patent claims                                          |
 | 10  | **Renewal Duration**       | 3.11   | Sustained commercial value - maximum renewal fee year paid                                   |
 | +   | **Breakthrough Invention** | 3.12   | Flag (not a score) - awarded when forward-citation percentile ≥ 99 in the cohort             |
 
-Each indicator is normalized against the patent's **technology-field and filing-year cohort** (35 WIPO fields × 47 filing years, 1978–2024). The shipped cohort statistics (`src/lib/server/data/cohort-stats.json`) hold **16,348 cohorts** — one percentile distribution per (field, year, indicator) combination — covering all ten indicators; sparse cohorts are omitted. Scores are rendered on a 0.0–1.0 scale. A **Composite Quality Index** aggregates five of the six OECD composite components (Forward Citations, Family Size, Number of Claims, Originality, Radicalness) by equal weighting; Generality is excluded from the standard composite because computing it requires a ~16 GB per-patent scan and is offered on-demand.
+Each indicator is normalized against the patent's **technology-field and filing-year cohort** (35 WIPO fields × 47 filing years, 1978–2024). The shipped cohort statistics (`src/lib/server/data/cohort-stats.json`) hold **16,348 cohorts**, one percentile distribution per (field, year, indicator) combination, covering all ten indicators; sparse cohorts are omitted. Scores are rendered on a 0.0–1.0 scale. A **Composite Quality Index** aggregates five of the six OECD composite components (Forward Citations, Family Size, Number of Claims, Originality, Radicalness) by equal weighting; Generality is excluded from the standard composite because computing it requires a ~16 GB per-patent scan and is offered on-demand.
 
 ## EPO TIP Deployment
 
@@ -40,7 +40,7 @@ Patent Value Explorer is designed to run on the EPO Technology and Innovation Pl
 The only file you need is [`Patent_Value_Explorer.ipynb`](Patent_Value_Explorer.ipynb).
 
 1. Download it from this repo (or: *File → Save Link As…* on the [raw link](https://raw.githubusercontent.com/mtcberlin/epo-tip-patent-value-explorer/refs/heads/main/Patent_Value_Explorer.ipynb)
-2. Run all cells — the notebook will:
+2. Run all cells. The notebook will:
    - Install the PATSTAT MCP server and `psutil` (pip --user)
    - Install project dependencies via `npm ci`
    - Build the SvelteKit app
@@ -80,11 +80,11 @@ Patent Number (user input)
 **Data Flow:**
 
 1. User enters a patent publication number (e.g., EP1000000)
-2. SvelteKit server queries the **PATSTAT MCP Server**, which retrieves patent data from PATSTAT
+2. SvelteKit server queries the **PATSTAT MCP Server**, which retrieves patent data via BigQuery
 3. The **Scoring Engine** computes ten OECD quality indicators from raw patent data
 4. **Cohort Normalization** compares scores against pre-computed statistics (16,348 cohorts)
 5. Results are displayed as a **Radar Chart** (LayerChart/D3) with indicator cards
-6. An optional **AI Narrative** (Anthropic Claude API) generates a human-readable patent quality summary
+6. An optional **AI Narrative** (Anthropic Claude API) generates a patent quality summary
 
 ## Tech Stack
 
@@ -127,14 +127,9 @@ The **Anthropic API key** for AI narrative generation is configured via the in-a
 
 ## AI Tool Disclosure
 
-This project was developed with assistance from **Claude Code** (Anthropic Claude Opus), used as an AI pair-programming tool for:
+**Development:** This project was built with assistance from **Claude Code** (Anthropic, Claude Sonnet 4.5 and Claude Opus 4.6 across the CodeFest window), used as a pair-programming tool for code generation and refactoring, test writing, architecture decisions, and documentation drafting. All AI-generated code was reviewed and validated by the developers. The OECD methodology implementation follows the published academic framework (Squicciarini & Dernis, 2013) and was verified against the original indicator definitions.
 
-- Code generation and refactoring
-- Test writing
-- Architecture decisions
-- Documentation
-
-All AI-generated code was reviewed and validated by the developer. The OECD methodology implementation follows the published academic framework (Squicciarini & Dernis, 2013) and was verified against the original indicator definitions.
+**Runtime:** The optional AI narrative uses the **Claude API** (Anthropic, model `claude-sonnet-4-5-20250929`). The application functions fully without it; all indicator scores, composite, radar chart, badges, and FAI are computed from PATSTAT data alone. Users supply their own Anthropic API key via the in-app Settings dialog; no key is shipped with the deployment.
 
 ## License
 
