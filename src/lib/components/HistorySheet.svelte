@@ -40,7 +40,7 @@
 
 <Sheet.Root bind:open={history.sheetOpen}>
 	<Sheet.Content side="right" class="flex w-[340px] flex-col gap-0 p-0 sm:w-[400px]">
-		<Sheet.Header class="border-border border-b py-3 pr-12 pl-4">
+		<Sheet.Header class="border-border space-y-1.5 border-b pt-6 pr-14 pb-4 pl-5">
 			<Sheet.Title class="flex items-center gap-2 text-base">
 				<Clock class="size-4" aria-hidden="true" />
 				Recently viewed
@@ -57,13 +57,13 @@
 				</p>
 			</div>
 		{:else}
-			<ul class="flex-1 overflow-y-auto" role="list">
+			<ul class="flex-1 overflow-y-auto py-1" role="list">
 				{#each history.entries as entry (entry.publicationNumber)}
 					<li class="border-border border-b last:border-b-0">
 						<a
 							href={patentHref(entry)}
 							onclick={handleClose}
-							class="hover:bg-muted/50 group flex items-start gap-2 px-4 py-2.5 transition-colors"
+							class="hover:bg-muted/50 group flex items-start gap-2 px-5 py-3 transition-colors"
 						>
 							<div class="min-w-0 flex-1">
 								<div class="text-foreground font-mono text-xs font-semibold">
@@ -91,7 +91,7 @@
 				{/each}
 			</ul>
 
-			<div class="border-border border-t px-4 py-3">
+			<div class="border-border border-t px-5 py-3">
 				<Button
 					variant="outline"
 					size="sm"
