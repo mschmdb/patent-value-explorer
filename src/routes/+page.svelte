@@ -30,7 +30,7 @@
 	</p>
 	<h1 class="text-foreground mt-3 text-4xl font-semibold text-pretty">{SITE_NAME}</h1>
 	<p class="text-muted-foreground mt-3 max-w-md text-sm leading-relaxed text-pretty">
-		8 OECD quality indicators. One radar chart. The story behind every patent.
+		10+ OECD quality indicators. One radar chart. The story behind every patent.
 	</p>
 
 	<div class="mt-8 w-full max-w-lg">
@@ -83,6 +83,6 @@
 <!-- Minimal footer -->
 <footer class="border-border border-t py-6 text-center">
 	<p class="text-muted-foreground text-xs text-pretty">
-		Data from EPO PATSTAT via BigQuery. Indicators based on the OECD Patent Quality framework.
+		Data from EPO PATSTAT via EPO Technology Intelligence Platform. Indicators based on the OECD Patent Quality framework.
 	</p>
 </footer>
