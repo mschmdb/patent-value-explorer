@@ -67,7 +67,6 @@ _bmad*/
 .gemini
 .entire
 
-# Internal data-recompute tooling (kept private — uses TIP BigQuery)
-Cohort_Recompute.ipynb
+# Intermediate outputs from cohort recompute (the notebook itself is committed)
 cohort-stats-additions.json
 reference-patents-patches.json

@@ -354,6 +354,10 @@ Runtime Python dependency (TIP JupyterHub notebook launcher only):
 
 - **mtc-patstat-mcp-lite** (MIT, MTC): thin MCP wrapper over `epo.tipdata.patstat`, used by `launch.py`. Pinned to a commit SHA for reproducibility.
 
+### Data generation tooling
+
+- **`Cohort_Recompute.ipynb`**: Jupyter notebook used on TIP to compute the cohort-statistics and reference-patent backfill data shipped in `src/lib/server/data/`. Connects to PATSTAT via `epo.tipdata.patstat` and BigQuery. Included in the repository per Section 6 of the Rules ("tools, including those used to generate... the software").
+
 ### EPO Patent Knowledge Products and Services used
 
 Per Section 6 of the Rules of Competition:
