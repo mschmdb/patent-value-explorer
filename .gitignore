@@ -66,3 +66,7 @@ _bmad*/
 .claude
 .gemini
 .entire
+
+# Intermediate outputs from cohort recompute (the notebook itself is committed)
+cohort-stats-additions.json
+reference-patents-patches.json

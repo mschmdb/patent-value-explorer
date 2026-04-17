@@ -48,6 +48,23 @@ def _port_in_use(port: int) -> bool:
         return s.connect_ex(("127.0.0.1", port)) == 0
 
 
+def _kill_port(port: int) -> None:
+    """Best-effort: kill processes listening on a TCP port (orphans from prior runs)."""
+    try:
+        import psutil
+    except ImportError:
+        return
+    for proc in psutil.process_iter(["pid"]):
+        try:
+            conns = (proc.net_connections if hasattr(proc, "net_connections") else proc.connections)(kind="tcp")
+            for conn in conns:
+                if conn.laddr and conn.laddr.port == port and conn.status == psutil.CONN_LISTEN:
+                    proc.kill()
+                    break
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+
+
 def _wait_for_port(port: int, timeout: int = 15) -> bool:
     deadline = time.time() + timeout
     while time.time() < deadline:
@@ -79,7 +96,7 @@ def _run(cmd: list[str], cwd: Path = PROJECT_DIR, timeout: int = 600) -> subproc
     return result
 
 
-def stop() -> None:
+def stop(silent: bool = False) -> None:
     """Stop all running Patent Value Explorer processes."""
     for proc in _processes:
         if proc.poll() is None:
@@ -90,6 +107,8 @@ def stop() -> None:
                 proc.kill()
                 proc.wait()
     _processes.clear()
+    if silent:
+        return
     if IN_NOTEBOOK:
         clear_output(wait=True)
         display(HTML(
@@ -117,11 +136,13 @@ def launch() -> None:
             ["node", "--version"], capture_output=True, text=True
         ).stdout.strip()
 
-        # 2. Install mtc-patstat-mcp-lite
+        # 2. Install mtc-patstat-mcp-lite + psutil (for orphan port cleanup)
         _log("⏳ Installing mtc.berlin PATSTAT MCP...")
         subprocess.run(
             [sys.executable, "-m", "pip", "install", "--user",
-             "git+https://github.com/mtcberlin/mtc-patstat-mcp-lite.git@develop"],
+             "psutil>=5.9",
+             "git+https://github.com/mtcberlin/mtc-patstat-mcp-lite.git"
+             "@334098aedc7a3242a6fbcdd10034be8bb1b0c55a"],
             capture_output=True, text=True, check=True,
         )
         # Ensure ~/.local/bin is in PATH (pip --user installs scripts there)
@@ -133,7 +154,7 @@ def launch() -> None:
         marker = PROJECT_DIR / "node_modules" / ".package-lock.json"
         if not marker.exists():
             _log("⏳ Installing dependencies (first run, ~30s)...")
-            _run(["npm", "install", "--legacy-peer-deps"])
+            _run(["npm", "ci", "--legacy-peer-deps"])
         else:
             _log("⏳ Dependencies already installed, skipping...")
 
@@ -151,13 +172,16 @@ def launch() -> None:
             _log("⏳ Building app...")
             _run(["npm", "run", "build"])
 
-        # 5. Check ports are free
+        # 5. Free ports from orphaned processes (e.g. kernel restart)
         for port in (MCP_PORT, APP_PORT):
             if _port_in_use(port):
-                raise RuntimeError(
-                    f"Port {port} is already in use. "
-                    f"Run stop() first or restart the kernel."
-                )
+                _log(f"⏳ Port {port} busy, cleaning up orphaned process...")
+                _kill_port(port)
+                time.sleep(0.5)
+                if _port_in_use(port):
+                    raise RuntimeError(
+                        f"Port {port} still in use after cleanup attempt."
+                    )
 
         # 6. Start MCP server
         _log("⏳ Starting mtc.berlin PATSTAT MCP...")
@@ -195,8 +219,8 @@ def launch() -> None:
 
         if IN_NOTEBOOK:
             clear_output(wait=True)
-            display(HTML(f"""
-            <div style="font-family:system-ui,sans-serif;text-align:center;padding:32px;">
+            running_html = HTML(f"""
+            <div style="font-family:system-ui,sans-serif;text-align:center;padding:32px 32px 8px;">
                 <div style="font-size:15px;color:#059669;font-weight:600;margin-bottom:16px;">
                     ✅ Patent Value Explorer is running
                 </div>
@@ -209,7 +233,38 @@ def launch() -> None:
                 <div style="margin-top:12px;font-size:12px;color:#9ca3af;">
                     Node {node_version} · MCP :{MCP_PORT} · App :{APP_PORT}
                 </div>
-            </div>"""))
+            </div>""")
+            try:
+                import ipywidgets as widgets
+                ui_out = widgets.Output()
+                with ui_out:
+                    display(running_html)
+                    stop_btn = widgets.Button(
+                        description="⏹  Stop Patent Value Explorer",
+                        button_style="danger",
+                        layout=widgets.Layout(width="auto", margin="0 auto 24px"),
+                    )
+
+                    def _on_stop(_btn):
+                        stop(silent=True)
+                        ui_out.clear_output(wait=False)
+                        with ui_out:
+                            display(HTML(
+                                "<div style='font-family:system-ui,sans-serif;"
+                                "padding:20px;background:#fef2f2;"
+                                "border-left:4px solid #dc2626;border-radius:8px;'>"
+                                "<div style='font-size:15px;color:#991b1b;'>"
+                                "Patent Value Explorer stopped.</div></div>"
+                            ))
+
+                    stop_btn.on_click(_on_stop)
+                    display(widgets.HBox(
+                        [stop_btn],
+                        layout=widgets.Layout(justify_content="center"),
+                    ))
+                display(ui_out)
+            except ImportError:
+                display(running_html)
         else:
             print(f"\nPatent Value Explorer is running!\nOpen: {url}")
 
